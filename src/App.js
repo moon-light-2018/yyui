@@ -5,7 +5,7 @@ import SexChart from './SexChart/SexChart'
 import FeatureDay from './FeatureDay'
 import FeatureDayTwo from './FeatureDayTwo/demo'
 import './styles/main.less'
-import './new.less'
+import './styles/new.less'
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 function App() {
