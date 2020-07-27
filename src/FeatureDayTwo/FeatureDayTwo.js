@@ -4,7 +4,7 @@ import './FeatureDayTwo.css'
 import moment from 'moment'
 
 function FeatureDayTwo(props) {
-    const { value = [], onChange } = props
+    const { value = [], onChange, onClose } = props
     const start = moment().add(-3, 'months').startOf("month")
     const defaultSecond = moment(start).add(1, 'day')
     const [firstValue, setFirstValue] = useState(value[1] || start)
@@ -40,6 +40,7 @@ function FeatureDayTwo(props) {
         setFirstValue(undefined)
         setSecondValue(undefined)
         onChange && onChange([])
+        onClose && onClose()
     }
     return (
         <div className='feature-day-two'>

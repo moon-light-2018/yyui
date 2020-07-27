@@ -11,26 +11,31 @@ function TestForm(props) {
             }
         });
     }
-    const { getFieldDecorator, getFieldsError, getFieldError, isFieldTouched } = props.form;
+    const { getFieldDecorator, getFieldValue, } = props.form;
+    //设置添加特征日
+    function setAddFeatureDay() {
+        props.form.setFieldsValue({ switchValue: false })
+    }
     return (
         <div>
             <Form>
                 <Form.Item style={{ width: 300 }}>
-                    {getFieldDecorator('passsword', {
+                    {getFieldDecorator('switchValue', {
                         initialValue: true,
                         valuePropName: 'checked',
                     })(
                         <Switch />
                     )}
                 </Form.Item>
-                <Form.Item style={{ width: 300 }}>
+                {getFieldValue('switchValue') ? <Form.Item style={{ width: 300 }}>
                     {getFieldDecorator('password', {
                         initialValue: [],
 
                     })(
-                        <FeatureDayTwo />
+                        <FeatureDayTwo onClose={setAddFeatureDay} />
                     )}
                 </Form.Item>
+                    : null}
 
                 <Button onClick={submit}>提交</Button>
             </Form>

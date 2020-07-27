@@ -26,6 +26,7 @@
     display: block;
 }
 .save-img{
+    min-width: 100px;
     display: none;
     position: fixed;
     margin-left: -20px;
