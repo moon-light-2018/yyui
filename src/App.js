@@ -6,7 +6,7 @@ import FeatureDay from './FeatureDay'
 import FeatureDayTwo from './FeatureDayTwo/demo'
 import Copy from 'react-copy';
 import './styles/main.less'
-import './new.less'
+import './styles/new.less'
 import { Button } from 'antd';
 function App() {
 
