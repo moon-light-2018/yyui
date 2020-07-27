@@ -1,0 +1,36 @@
+.feature-day-two{
+   
+}
+.heard-title{
+    display: flex;
+    width: 100%;
+    
+}
+
+.title{
+    color:#282828
+}
+
+.date-box{
+    background: #F8F9FB;
+    padding: 10px 14px;
+    position: relative;
+    font-size: 12px;
+}
+
+.close-box{
+    position: absolute;
+    right:-8px;
+    top:-20px;
+    
+}
+.date-line{
+    display: flex;
+    align-items:center
+}
+.date-line>div{
+    margin-bottom: 10px;
+    margin-right: 10px;
+    height: 32px;
+    color:rgba(40,40,40,0.65);
+}

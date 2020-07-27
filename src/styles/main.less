@@ -1,0 +1,155 @@
+@import "./vars.less";
+//@font-face {
+//  font-family: SummitMedium-Solid;
+//  src: url('../assets/SummitMedium-Solid.ttf');
+//}
+// 添加特殊字体
+@font-face {
+  font-family: 'Alibaba-PuHuiTi';//中文字体 思源黑体
+  // src: url('../assets/SourceHanSansCN-Regular.otf')
+}
+*{
+  font-family: "Alibaba-PuHuiTi" !important;
+}
+html, body, #root, .layout {
+  height: 100%;
+}
+
+#root {
+  min-width: 1000px;
+}
+
+.amap-logo, .amap-copyright {
+  display: none !important;
+}
+
+body, ul, li, div, p, h1, h2, h3, h4, h5, h6, label, button, span, i, b, a, button {
+  padding: 0;
+  margin: 0;
+  font-family: "Alibaba-PuHuiTi" !important;
+}
+
+input, button, select, textarea, span, a {
+  outline: none;
+}
+
+li {
+  list-style: none;
+}
+
+label {
+  font-weight: 400;
+}
+
+div, p, h1, h2, h3, h4, h5, h6, label, span, button, ul, li {
+  outline: none;
+}
+
+#root p {
+  // margin-bottom: 0;
+  // margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-weight: 400;
+}
+
+input[placeholder]::-webkit-input-placeholder {
+  color: #999;
+}
+
+a {
+  // color: $text-base-link;
+
+  &:hover,
+  &:focus {
+    // color: $text-base-link;
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+#layout {
+  overflow: hidden;
+  position: relative;
+}
+
+.ant-calendar-range {
+  .ant-calendar-footer-extra {
+    width: 100%;
+  }
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  position: relative;
+}
+
+.leaflet-pixi-overlay {
+  z-index: 201;
+}
+
+.leaflet-top {
+  top: 54px !important;
+}
+
+.leaflet-left {
+  left: 6px !important;
+}
+
+&::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+&::-webkit-scrollbar-track,
+&::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  border: 5px solid transparent;
+}
+
+&::-webkit-scrollbar-track {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, .2) inset;
+}
+
+&::-webkit-scrollbar-thumb {
+  min-height: 12px;
+  background-clip: content-box;
+  box-shadow: 0 0 0 5px #4d358d70 inset;
+}
+
+&::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+&::-webkit-scrollbar-track {
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1) inset;
+}
+
+.ant-message .ant-message-notice {
+  margin-top: 15px;
+}
+
+.ant-modal-wrap {
+  .ant-modal {
+    position: fixed;
+    top: 50% !important;
+    left: 50%;
+    transform: translate(-50%, -50%) !important;
+    animation-iteration-count: 0;
+    -webkit-transform: translate(-50%, -50%) !important;
+    -moz-transform: translate(-50%, -50%);
+  }
+
+  z-index: 1006;
+}
+
+.ant-modal-mask {
+  z-index: 1006;
+}
+
+input::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.25) !important;
+}
+

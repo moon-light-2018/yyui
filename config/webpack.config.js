@@ -491,7 +491,7 @@ module.exports = function (webpackEnv) {
                 ...getStyleLoaders({ importLoaders: 2 }),
                 {
                   loader: require.resolve('less-loader'),
-                  options: { javascriptEnabled: true }
+                  options: { lessOptions: { javascriptEnabled: true } }
                 }
               ]
             },

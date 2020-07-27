@@ -1,0 +1,27 @@
+.calendar-days{
+    border: 1px solid rgba(0, 0, 0, 0.15) ;
+}
+.calendar-days-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+.other-days,.now-days{
+    width:calc(100% / 7);
+    text-align: center;
+}
+.other-days{
+    color: #999;
+}
+.now-days{
+    color: #000;
+}
+.common-days-active{
+    background-color: #7300FF;
+    color:#fff;
+}
+.common-days:hover{
+    background-color: #efe6f5;
+}
+.days-width{
+    min-width: 86px;
+}

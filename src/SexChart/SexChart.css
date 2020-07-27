@@ -1,0 +1,105 @@
+
+.sex-chart {
+    width:100%;
+    font-size: 12px;
+    color:#000
+}
+.sex-chart-title{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.download-icon{
+    font-size: 16px;
+}
+.download-icon:hover{
+    color:rgba(0, 131, 250, 0.85);
+}
+.download-box{
+    width: 20px;
+    height: 20px;
+    position: relative;
+    transition: all 0.3s;
+}
+.download-box:hover>.save-img{
+    display: block;
+}
+.save-img{
+    display: none;
+    position: fixed;
+    margin-left: -20px;
+    margin-top: -4px;
+    color:rgba(0, 131, 250, 0.85);
+}
+
+.blue-person,
+.pink-person {
+    width: 6px;
+    height: 13px;
+    padding: 1px;
+}
+
+.person-number {
+    display: flex;
+}
+
+.sum-count {
+    justify-content: space-between;
+}
+
+.row-sex-number,
+.sum-count {
+    display: flex;
+    width: 100%;
+}
+
+.male-number,
+.blue-person {
+    color: #32C5FF;
+}
+
+.female-number,
+.pink-person {
+    color: #E380AD;
+}
+
+.female-number {
+    text-align: right;
+}
+
+.male-type {
+    width: 80px;
+    text-align: center;
+}
+
+.number-width {
+    width: 50px;
+}
+
+.person-width {
+    width: calc((100% - 130px));
+}
+
+
+.person-line-box {
+    position: relative;
+}
+
+.person-line {
+    height: 1px;
+    border-top: 1px dashed #32C5FF;
+    position: absolute;
+    top: 13px;
+    z-index: -1;
+
+}
+
+.right-person {
+    right: 0px;
+}
+
+.content {
+    position: absolute;
+    top: 4px;
+}
