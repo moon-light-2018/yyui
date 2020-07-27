@@ -6,6 +6,7 @@ import FeatureDay from './FeatureDay'
 import FeatureDayTwo from './FeatureDayTwo/demo'
 import Copy from 'react-copy';
 import './styles/main.less'
+import './styles/new.less'
 import { Button } from 'antd';
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
         </Button>
       </Copy>
 
-      <h2>多选日期组件</h2>
+      <h2 className="app-header-less">多选日期组件</h2>
       <CalendarMore />
 
       <FeatureDayTwo />

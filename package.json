@@ -14,6 +14,7 @@
     "babel-eslint": "10.1.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "8.1.0",
+    "babel-plugin-antd": "^0.5.1",
     "babel-plugin-import": "^1.13.0",
     "babel-plugin-named-asset-import": "^0.3.6",
     "babel-preset-react-app": "^9.1.2",
@@ -144,13 +145,15 @@
       "react-app"
     ],
     "plugins": [
-      "import",
-      {
-        "libraryName": "antd",
-        "libraryDirectory": "lib",
-        "style": true
-      },
-      "antd"
+      [
+        "import",
+        {
+          "libraryName": "antd",
+          "libraryDirectory": "lib",
+          "style": true
+        },
+        "antd"
+      ]
     ]
   }
 }
