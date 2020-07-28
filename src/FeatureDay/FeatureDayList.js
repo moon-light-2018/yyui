@@ -18,27 +18,33 @@ function getListToObj(list = plainOptions) {
 }
 function FeatureDay(props) {
     const [dateType, setDateType] = useState(1)
-    const [holidaysList, setHolidaysList] = useState([])
-    const [workingList, setWorkingList] = useState([])
-    const [weekendList, setWeekendList] = useState([])
-    const [stuHolidays, setStuHolidays] = useState([])
+    const [selectedList, setSelectedList] = useState([])
     const { onChange } = props
-    function changData(key, value) {
-        let obj = { holidaysList, workingList, weekendList, stuHolidays }
-        if (key == 'holidaysList') {
-            setHolidaysList(value)
+    function changData(valueKey, list) {
+        let nowList = selectedList.filter(one => one.type != valueKey)
+        for (let i = 0; i < list.length; i++) {
+            nowList.push({
+                value: list[i],
+                type: valueKey,
+                key: `${list[i]}_${valueKey}`
+            });
         }
-        if (key == 'workingList') {
-            setWorkingList(value)
-        }
-        if (key == 'weekendList') {
-            setWeekendList(value)
-        }
-        if (key == 'stuHolidays') {
-            setStuHolidays(value)
-        }
-        obj[key] = value
-        onChange && onChange(obj)
+        setSelectedList(nowList)
+        console.log("changData -> nowList", nowList)
+        onChange && onChange(nowList)
+    }
+    function deleteByKey(key) {
+        const list = selectedList.filter(one => one.key != key)
+        setSelectedList(list)
+        onChange && onChange(list)
+    }
+    function cleanData(type) {
+        const list = selectedList.filter(one => one.type != type)
+        setSelectedList(list)
+        onChange && onChange(list)
+    }
+    function getSelectedType(type = []) {
+        return selectedList.filter(one => type.includes(one.type))
     }
     const holidaysMap = getListToObj()
     return (
@@ -46,58 +52,31 @@ function FeatureDay(props) {
             <CollapsePanel header='已添加特征日' isFoldShow={false}>
                 <div className='over-selected-show'>
                     {/* 法定节假日 */}
-                    {holidaysList.map(one => <span key={one} className='over-selected-box'>
-                        {holidaysMap[one].name}
+                    {selectedList.map(one => <span key={one.key} className='over-selected-box'>
+                        {holidaysMap[one.value].name}
                         <Icon
                             type="close"
                             className='close-icon'
-                            onClick={() => setHolidaysList(holidaysList.filter(item => item != one))}
-                        />
-                    </span>)}
-                    {/* 工作日 */}
-                    {workingList.map(one => <span key={one} className='over-selected-box'>
-                        {holidaysMap[one].name}
-                        <Icon
-                            type="close"
-                            onClick={() => setWorkingList(workingList.filter(item => item != one))}
-                        />
-                    </span>)}
-                    {/* 周末 */}
-                    {weekendList.map(one => <span key={one} className='over-selected-box'>
-                        {holidaysMap[one].name}
-                        <Icon
-                            type="close"
-                            onClick={() => setWeekendList(weekendList.filter(item => item != one))}
-                        />
-                    </span>)}
-                    {/* 学生假期 */}
-                    {stuHolidays.map(one => <span key={one} className='over-selected-box'>
-                        {holidaysMap[one].name}
-                        <Icon
-                            type="close"
-                            onClick={() => setStuHolidays(stuHolidays.filter(item => item != one))}
+                            onClick={() => deleteByKey(one.key)}
                         />
                     </span>)}
                 </div>
             </CollapsePanel>
 
             <CollapsePanel header='添加法定节假日' switchName='法定节假日'
-                cleanData={() => changData('holidaysList', [])}
+                cleanData={() => cleanData(['holidays'])}
             >
                 <CheckoutAll
                     changData={changData}
-                    defaultList={holidaysList}
+                    defaultList={getSelectedType('holidays')}
                     plainOptions={plainOptions}
-                    valueKey='holidaysList'
-                    key={JSON.stringify(holidaysList)}
+                    valueKey='holidays'
+                    key={JSON.stringify(selectedList)}
                 />
             </CollapsePanel>
 
             <CollapsePanel header='添加工作日/周末' switchName='工作日/周末'
-                cleanData={() => {
-                    changData('workingList', [])
-                    changData('weekendList', [])
-                }}
+                cleanData={() => cleanData(['working', 'weekend'])}
             >
                 <div className='day-header'>
                     <div className={`day-item ${dateType == 1 && 'day-item-active'}`} onClick={() => setDateType(1)}>工作日</div>
@@ -105,31 +84,29 @@ function FeatureDay(props) {
                 </div>
                 {dateType == 1 && <CheckoutAll
                     changData={changData}
-                    defaultList={workingList}
+                    defaultList={getSelectedType('working')}
                     plainOptions={plainOptions}
-                    valueKey='workingList'
-                    key={JSON.stringify(workingList)}
+                    valueKey='working'
+                    key={JSON.stringify(selectedList)}
                 />}
                 {dateType == 2 && <CheckoutAll
                     changData={changData}
-                    defaultList={weekendList}
+                    defaultList={getSelectedType('weekend')}
                     plainOptions={plainOptions}
-                    valueKey='weekendList'
-                    key={JSON.stringify(weekendList)}
+                    valueKey='weekend'
+                    key={JSON.stringify(selectedList)}
                 />}
 
             </CollapsePanel>
             <CollapsePanel header='添加学生假期' switchName='学生假期'
-                cleanData={() => {
-                    changData('stuHolidays', [])
-                }}
+                cleanData={() => cleanData(['holidays'])}
             >
                 <CheckoutAll
                     changData={changData}
-                    defaultList={stuHolidays}
+                    defaultList={getSelectedType('holidays')}
                     plainOptions={plainOptions}
-                    valueKey='stuHolidays'
-                    key={JSON.stringify(stuHolidays)}
+                    valueKey='holidays'
+                    key={JSON.stringify(selectedList)}
                 />
             </CollapsePanel>
         </div>
