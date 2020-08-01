@@ -1,3 +1,5 @@
+@primary-color: #4B00A7;
+
 .over-selected-show {
     height: 127px;
     overflow-y: auto;
@@ -5,7 +7,7 @@
     .over-selected-box {
         display: inline-block;
         background: #F0E5FF;
-        color: #4B00A7;
+        color: @primary-color;
         height: 26px;
         line-height: 26px;
         border-radius: 4px;
@@ -27,7 +29,7 @@
     flex-wrap: wrap;
 
     .checkbox-item {
-        width: 90px;
+        width: 78px;
         font-size: 12px;
 
     }
@@ -50,11 +52,11 @@
     }
 
     .day-item-active {
-        border-bottom: 2px solid #7300FF;
+        border-bottom: 2px solid @primary-color;
     }
 
     .day-item:hover {
-        border-bottom: 2px solid #7300FF;
+        border-bottom: 2px solid @primary-color;
     }
 }
 
@@ -84,6 +86,10 @@
 
     .fold-show {
         height: auto;
+
+        .ant-checkbox-indeterminate .ant-checkbox-inner::after {
+            background-color: @primary-color  !important;
+        }
     }
 
     .fold-hide {

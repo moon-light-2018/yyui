@@ -1,20 +1,213 @@
 import React, { useState, useEffect } from 'react'
 import './FeatureDay.less'
 import { Switch, Collapse, Checkbox, Tabs, Icon, Popover } from 'antd'
-const plainOptions = [
-    { name: '元旦节', value: '1243', desc: '20190912' },
-    { name: '元旦节', value: '1233', desc: '20190912' },
-    { name: '元旦节', value: '12343', desc: '20190912' },
-    { name: '元旦节4', value: '12345', desc: '20190912' },
-    { name: '元旦节5', value: '12334', desc: '20190912' },
-];
-function getListToObj(list = plainOptions) {
+const data = [
+    {
+        "specialDay": [
+            {
+                "code": "101",
+                "des": "20190101,20190102\r\n",
+                "name": "元旦"
+            },
+            {
+                "code": "102",
+                "des": "20190204,20190205,20190206,20190207,20190208,20190209,20190210",
+                "name": "春节"
+            },
+            {
+                "code": "103",
+                "des": "20190405,20190406,20190407",
+                "name": "清明节"
+            },
+            {
+                "code": "104",
+                "des": "20190501,20190502,20190503,20190504",
+                "name": "劳动节"
+            },
+            {
+                "code": "105",
+                "des": "20190607,20190608,20190609",
+                "name": "端午节"
+            },
+            {
+                "code": "106",
+                "des": "20190913,20190914,20190915",
+                "name": "中秋节"
+            },
+            {
+                "code": "107",
+                "des": "20191001,20191002,20191003,20191004,20191005,20191006,20191007",
+                "name": "国庆节"
+            }
+        ],
+        "groupName": "法定节假日",
+        "groupId": 1
+    },
+    {
+        "specialDay": [
+            {
+                "code": "109",
+                "des": null,
+                "name": "1月休息日"
+            },
+            {
+                "code": "111",
+                "des": null,
+                "name": "2月休息日"
+            },
+            {
+                "code": "113",
+                "des": null,
+                "name": "3月休息日"
+            },
+            {
+                "code": "115",
+                "des": null,
+                "name": "4月休息日"
+            },
+            {
+                "code": "117",
+                "des": null,
+                "name": "5月休息日"
+            },
+            {
+                "code": "119",
+                "des": null,
+                "name": "6月休息日"
+            },
+            {
+                "code": "121",
+                "des": null,
+                "name": "7月休息日"
+            },
+            {
+                "code": "123",
+                "des": null,
+                "name": "8月休息日"
+            },
+            {
+                "code": "125",
+                "des": null,
+                "name": "9月休息日"
+            },
+            {
+                "code": "127",
+                "des": null,
+                "name": "10月休息日"
+            },
+            {
+                "code": "129",
+                "des": null,
+                "name": "11月休息日"
+            },
+            {
+                "code": "131",
+                "des": null,
+                "name": "12月休息日"
+            }
+        ],
+        "groupName": "周末",
+        "groupId": 2
+    },
+    {
+        "specialDay": [
+            {
+                "code": "108",
+                "des": null,
+                "name": "1月工作日"
+            },
+            {
+                "code": "110",
+                "des": null,
+                "name": "2月工作日"
+            },
+            {
+                "code": "112",
+                "des": null,
+                "name": "3月工作日"
+            },
+            {
+                "code": "114",
+                "des": null,
+                "name": "4月工作日"
+            },
+            {
+                "code": "116",
+                "des": null,
+                "name": "5月工作日"
+            },
+            {
+                "code": "118",
+                "des": null,
+                "name": "6月工作日"
+            },
+            {
+                "code": "120",
+                "des": null,
+                "name": "7月工作日"
+            },
+            {
+                "code": "122",
+                "des": null,
+                "name": "8月工作日"
+            },
+            {
+                "code": "124",
+                "des": null,
+                "name": "9月工作日"
+            },
+            {
+                "code": "126",
+                "des": null,
+                "name": "10月工作日"
+            },
+            {
+                "code": "128",
+                "des": null,
+                "name": "11月工作日"
+            },
+            {
+                "code": "130",
+                "des": null,
+                "name": "12月工作日"
+            }
+        ],
+        "groupName": "工作日",
+        "groupId": 3
+    },
+    {
+        "specialDay": [
+            {
+                "code": "132",
+                "des": null,
+                "name": "寒假"
+            },
+            {
+                "code": "133",
+                "des": null,
+                "name": "暑假"
+            }
+        ],
+        "groupName": "学生假期",
+        "groupId": 4
+    }
+]
+function getListToObj(list = data) {
     let obj = {}
     for (let i = 0; i < list.length; i++) {
-        obj[list[i].value] = list[i];
-
+        const specialDayList = list[i].specialDay
+        for (let j = 0; j < specialDayList.length; j++) {
+            obj[specialDayList[j].code] = {
+                ...specialDayList[j],
+                groupId: list[i].groupId,
+                groupName: list[i].groupName
+            };
+        }
     }
     return obj
+}
+function getPlainOptions(index) {
+    return data[index] && data[index].specialDay || []
 }
 function FeatureDay(props) {
     const [dateType, setDateType] = useState(1)
@@ -23,6 +216,7 @@ function FeatureDay(props) {
     const [weekendList, setWeekendList] = useState([])
     const [stuHolidays, setStuHolidays] = useState([])
     const { onChange } = props
+    const holidaysMap = getListToObj()
     function changData(key, value) {
         let obj = { holidaysList, workingList, weekendList, stuHolidays }
         if (key == 'holidaysList') {
@@ -40,7 +234,19 @@ function FeatureDay(props) {
         obj[key] = value
         onChange && onChange(obj)
     }
-    const holidaysMap = getListToObj()
+    function listFormat() {
+        objFormat(holidaysList)
+        objFormat(workingList)
+        objFormat(weekendList)
+        objFormat(stuHolidays)
+    }
+    function objFormat(list = []) {
+        let objNow = {}
+        return list.map(one => ({
+            code: one,
+            name: holidaysMap[one].name
+        }))
+    }
     return (
         <div>
             <CollapsePanel header='已添加特征日' isFoldShow={false}>
@@ -87,7 +293,7 @@ function FeatureDay(props) {
                 <CheckoutAll
                     changData={changData}
                     defaultList={holidaysList}
-                    plainOptions={plainOptions}
+                    plainOptions={getPlainOptions(0)}
                     valueKey='holidaysList'
                     key={JSON.stringify(holidaysList)}
                 />
@@ -106,14 +312,14 @@ function FeatureDay(props) {
                 {dateType == 1 && <CheckoutAll
                     changData={changData}
                     defaultList={workingList}
-                    plainOptions={plainOptions}
+                    plainOptions={getPlainOptions(1)}
                     valueKey='workingList'
                     key={JSON.stringify(workingList)}
                 />}
                 {dateType == 2 && <CheckoutAll
                     changData={changData}
                     defaultList={weekendList}
-                    plainOptions={plainOptions}
+                    plainOptions={getPlainOptions(2)}
                     valueKey='weekendList'
                     key={JSON.stringify(weekendList)}
                 />}
@@ -127,7 +333,7 @@ function FeatureDay(props) {
                 <CheckoutAll
                     changData={changData}
                     defaultList={stuHolidays}
-                    plainOptions={plainOptions}
+                    plainOptions={getPlainOptions(3)}
                     valueKey='stuHolidays'
                     key={JSON.stringify(stuHolidays)}
                 />
@@ -197,7 +403,7 @@ function CheckoutAll(props) {
         changData && changData(valueKey, valueAll)
     }
     function getAllValue() {
-        return plainOptions.map(one => one.value)
+        return plainOptions.map(one => one.code)
     }
     return <div className='check-box-group'>
         <Checkbox
@@ -210,14 +416,13 @@ function CheckoutAll(props) {
             plainOptions.map(one => <Checkbox
                 size='small'
                 className='checkbox-item'
-                key={one.value}
-                onChange={(e) => onChange(one.value, e)}
-                checked={checkedList.includes(one.value)}
+                key={one.code}
+                onChange={(e) => onChange(one.code, e)}
+                checked={checkedList.includes(one.code)}
             >
                 <Popover content={one.desc} >
                     {one.name}
                 </Popover>
-
             </Checkbox>)
         }
     </div>

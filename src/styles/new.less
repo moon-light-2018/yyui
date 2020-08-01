@@ -1,4 +1,33 @@
 @import './vars.less';
-.app-header-less{
+@primary-color: #4B00A7;
+@primary-background: #F0E5FF;
+
+.app-header-less {
     background-color: #f00;
+}
+
+.err-content {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.back-color {
+
+    .ant-checkbox-wrapper,
+    .ant-checkbox-wrapper-checked {
+        padding: 11px;
+        border-radius: 2px;
+    }
+
+    .ant-checkbox-wrapper {
+        margin: 5px 0px;
+        background: #F8F9FB;
+        color: #282828;
+    }
+
+    .ant-checkbox-wrapper-checked {
+        padding: 11px;
+        background: @primary-background;
+        color: @primary-color
+    }
 }
