@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react'
-import { Form, Checkbox, Slider, Row, Col } from 'antd'
+import { Form, Checkbox, Slider, Row, Col, Select, Icon } from 'antd'
 import './StandardPopulation.less'
+import { dataParamList } from '../data'
+const { Option } = Select;
+const ageInitValue = [{ key: '5', label: '19-24岁' }]
 function StandardPopulation(props) {
     useEffect(() => {
         console.log(333);
@@ -35,39 +38,48 @@ function StandardPopulation(props) {
                 )}
             </Form.Item>
             <Form.Item label='年龄' {...formLayout}>
-                <StepLayout
-                    value={(getFieldValue('param_age') || [19, 29]).join('-')}
-                    unit='岁'>
-                    {getFieldDecorator('param_age', {
-                        initialValue: [19, 29],
-                        rules: [{ required: true, message: '请选择年龄' },
-                        { validator: ageVali }],
-
-                    })(
-                        <Slider style={{ width: '96%' }}
-                            range
-                            step={getFieldValue('param_spi') > 24 ? 4 : 5}
-                            min={19}
-                            max={69}
-                        />
-                    )}
-                </StepLayout>
+                {
+                    getFieldDecorator('param_age', {
+                        rules: [
+                            {
+                                required: true,
+                                message: '请选择年龄'
+                            },
+                        ],
+                        initialValue: ageInitValue
+                    })
+                        (
+                            <Select
+                                mode="multiple"
+                                className='multiple-select'
+                                labelInValue={true}
+                            >
+                                {dataParamList.param_age.options.map(one => <Option key={one.item} value={one.value} >{one.item}</Option>)}
+                            </Select>
+                        )
+                }
             </Form.Item>
-            <Form.Item label='富裕指数' {...formLayout}>
-                <StepLayout
-                    value={(getFieldValue('param_spi') || [1, 2]).join('-')}
-                    unit='级'>
-                    {getFieldDecorator('param_spi', {
-                        initialValue: [1, 2],
-                        rules: [{ required: true, message: '请选择年龄' }],
-                    })(
-                        <Slider style={{ width: '96%' }}
-                            range
-                            min={1}
-                            max={8}
-                        />
-                    )}
-                </StepLayout>
+            <Form.Item label={<div>富裕指数<Icon type="info-circle" /></div>} {...formLayout}>
+                {
+                    getFieldDecorator('param_spi', {
+                        rules: [
+                            {
+                                required: true,
+                                message: '请选择富裕指数'
+                            },
+                        ],
+                        initialValue: [{ key: 1, label: '1级' }]
+                    })
+                        (
+                            <Select
+                                mode="multiple"
+                                className='multiple-select width-spi'
+                                labelInValue={true}
+                            >
+                                {dataParamList.param_spi.options.map(one => <Option key={one.item} value={one.value} >{one.item}</Option>)}
+                            </Select>
+                        )
+                }
             </Form.Item>
         </div>
     )

@@ -1,49 +1,40 @@
 import React from 'react'
 import { Form, Button, Input, Switch, Tabs } from 'antd'
 import InterestPreference from './InterestPreference'
+import { dataParamList } from '../data.js';
+import './InterestPreference.less'
 const { TabPane } = Tabs;
+
 function TestForm(props) {
-    function submit(e) {
-        e.preventDefault();
-        props.form.validateFields((err, values) => {
-            if (!err) {
-                console.log('Received values of form: ', values);
-            }
-        });
-    }
+    const dataSourcePhone = dataParamList['param_phone_brand'].options.map(one => ({ key: one.value, ...one }))
+    const dataSourceAPP = dataParamList['param_app'].options.map(one => ({ key: one.value, ...one }))
     const { getFieldDecorator, getFieldValue, } = props.form;
-    //设置添加特征日
-    function setAddFeatureDay() {
-        props.form.setFieldsValue({ switchValue: false })
-    }
     return (
-        <div>
-            <Form>
-                <Tabs>
-                    <TabPane tab="手机偏好" key="1">
+        <div className='step-second'>
+            <Tabs defaultActiveKey='1'>
+                <TabPane tab="手机偏好" key="1">
+                    <Form.Item style={{ width: 300 }}>
+                        {getFieldDecorator('param_phone_brand', {
+                            initialValue: [],
+                            valuePropName: 'checked',
+                        })(
+                            <InterestPreference dataSource={dataSourcePhone} showSearch={false} typeText='手机列表' />
+                        )}
+                    </Form.Item>
+                </TabPane>
+                <TabPane tab="APP偏好" key="2">
+                    <div className='transfer-app-card'>
                         <Form.Item style={{ width: 300 }}>
-                            {getFieldDecorator('iphone', {
+                            {getFieldDecorator('param_app', {
                                 initialValue: [],
-                                valuePropName: 'checked',
                             })(
-                                <InterestPreference />
+                                <InterestPreference dataSource={dataSourceAPP} showSearch={true} />
                             )}
                         </Form.Item>
-                    </TabPane>
-                    <TabPane tab="APP偏好" key="2">
-                        <Form.Item style={{ width: 300 }}>
-                            {getFieldDecorator('password', {
-                                initialValue: [],
-                            })(
-                                <InterestPreference />
-                            )}
-                        </Form.Item>
-                    </TabPane>
-                </Tabs>
-                <Button onClick={submit}>提交</Button>
-            </Form>
+                    </div>
+                </TabPane>
+            </Tabs>
         </div>
     )
 }
-const WrappedHorizontalLoginForm = Form.create('asd')(TestForm);
-export default WrappedHorizontalLoginForm 
+export default TestForm

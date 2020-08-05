@@ -4,15 +4,20 @@ import CalendarMore from './CalendarMore'
 import SexChart from './SexChart/SexChart'
 import FeatureDay from './FeatureDay'
 import FeatureDayTwo from './FeatureDayTwo/demo'
+import InterestPreference from './InterestPreference'
+import StandardPopulation from './StandardPopulation'
 import './styles/main.less'
 import './styles/new.less'
-import { Tabs } from 'antd';
+import { Tabs, Form } from 'antd';
 const { TabPane } = Tabs;
-function App() {
+function App(props) {
 
   return (
     <div className='container-all' >
-
+      <StandardPopulation />
+      <Form>
+        <InterestPreference form={props.form} />
+      </Form>
       <Tabs className='demo-show-tab'>
         <TabPane tab="全选组件逻辑+下拉" key="2">
           <FeatureDay />
@@ -25,17 +30,14 @@ function App() {
         <TabPane tab="日期组合操作" key="3">
           <FeatureDayTwo />
         </TabPane>
-
-
-
         <TabPane tab="div导出为图片+性别渲染" key="4">
           <SexChart />
         </TabPane>
-
       </Tabs>
     </div>
 
   );
 }
 
-export default App;
+export default Form.create()(App);
+

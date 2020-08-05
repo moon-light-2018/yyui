@@ -1,31 +1,256 @@
+@primary-color: #4B00A7;
+
 .interest-preference {
-    width: 220px;
     font-size: 12px;
 
     .interest-header {
         display: flex;
 
-        &>:first-child {
-            margin-right: 40px;
+        &>div:first-child {
+            padding-left: 4px;
         }
 
         &>div {
             color: #282828;
-            width: 100px;
-            padding-left: 4px;
+            width: 130px;
+            padding-left: 14px;
 
             .delete-icon {
-                margin-left: 64px;
+                margin-left: 14px;
             }
         }
     }
 
-    .ant-transfer-list {
-        width: 100px;
+    .tsranfer-card {
+        margin-top: 5px;
+        width: 223px;
+
+        .transfer-top {
+            margin-bottom: 5px;
+
+            >a {
+                font-size: 12px;
+                color: #282828;
+            }
+
+            >a:last-child {
+                float: right;
+
+                i {
+                    margin-left: 15px;
+                }
+
+                i:hover {
+                    color: rgba(72, 162, 255, 1)
+                }
+            }
+        }
+
+        .ant-transfer-list-body-search-wrapper {
+            position: relative;
+            padding: 0;
+            height: 32px;
+
+            .ant-transfer-list-search {
+                border: 0;
+                padding-right: 0;
+                border-bottom: 1px solid #ECECEC;
+                overflow: hidden;
+            }
+        }
     }
 
-    .ant-transfer-list-content-item {
+    .ant-transfer {
+        position: relative;
+        display: flex;
+        width: 223px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+
+    .ant-transfer-list {
+        width: 96px;
+        // height: 184px;
+        padding-top: 10px;
+        border-color: #d3d3d3;
+        background: #fff;
+        border-radius: 0;
+    }
+
+    .ant-transfer-list-header {
+        padding: 5px;
+
+        .ant-checkbox .ant-checkbox-inner,
+        .ant-checkbox .ant-checkbox-input {
+            width: 12px;
+            height: 12px;
+        }
+
+        .ant-checkbox-inner {
+            border-color: @primary-color  !important;
+        }
+
+        .ant-checkbox-checked .ant-checkbox-inner {
+            background: @primary-color  !important;
+            ;
+        }
+
+        .ant-transfer-list-header-selected {
+            >span:first-child {
+                display: none;
+            }
+
+            .ant-transfer-list-header-title {
+                position: absolute;
+                left: 23px;
+                right: inherit;
+                font-size: 12px;
+            }
+        }
+    }
+
+    .ant-transfer-list-body {
+        padding-top: 25px;
+    }
+
+    .ant-transfer-list-content {
+        >div.LazyLoad {
+            height: 28px !important;
+        }
+    }
+
+    .ant-transfer-list-content li {
+        padding: 0;
+        padding-left: 10px;
+        min-height: 28px;
+        line-height: 28px;
+
+        >.ant-checkbox-wrapper,
+        .ant-checkbox-wrapper {
+            // display: none;
+        }
+
+        .ant-checkbox .ant-checkbox-inner,
+        .ant-checkbox .ant-checkbox-input {
+            width: 12px;
+            height: 12px;
+        }
+
+        .ant-transfer-list-content-item-text {
+            font-size: 12px;
+            color: #282828;
+        }
+
+        >.ant-checkbox-wrapper-checked~.ant-transfer-list-content-item-text {
+            color: @primary-color;
+        }
+    }
+
+    .ant-btn-icon-only.ant-btn-sm {
+        position: relative;
+        margin: 0 auto;
+        background: transparent;
+        border: 0;
+        box-shadow: none;
+    }
+
+    .ant-btn-icon-only.ant-btn-sm::before {
+        position: absolute;
+        top: 3px;
+        left: 1px;
+        content: '';
+        width: 5px;
+        height: 1px;
+        background: red;
+    }
+
+    .ant-transfer-list-body-search-wrapper {
+        position: relative;
+        padding: 0;
+        height: 32px;
+
+        .ant-transfer-list-search {
+            border: 0;
+            padding-right: 0;
+            border-bottom: 1px solid #ECECEC;
+            overflow: hidden;
+        }
+    }
+
+    .ant-transfer-operation {
+        flex: 1;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ant-transfer-operation .ant-btn .anticon {
+        color: @primary-color;
+    }
+
+
+}
+
+.transfer-app-card {
+    .ant-transfer-list {
+        padding-top: 0;
+    }
+
+    .ant-transfer-list-body-with-search {
+        padding-top: 0;
+    }
+
+    .ant-transfer-list-search-action {
+        position: relative;
+        top: -31px;
+        right: -63px;
+
+        i {
+            font-size: 16px;
+            color: rgba(40, 40, 40, 0.45);
+        }
+    }
+
+    .ant-transfer-list-content {
+        height: calc(100% - 32px);
+    }
+}
+
+.step-second {
+    .ant-tabs-nav .ant-tabs-tab {
+        margin: 0;
+        padding: 0;
+        margin-right: 10px;
         font-size: 12px;
         color: #282828;
+        font-weight: normal;
+    }
+
+    .ant-tabs-nav .ant-tabs-tab:hover {
+        color: @primary-color;
+    }
+
+    .ant-tabs-bar {
+        border: 0;
+    }
+
+    .ant-tabs-nav-scroll,
+    .ant-tabs-nav-container,
+    .ant-tabs-nav-wrap {
+        overflow: inherit;
+    }
+
+    .ant-tabs-ink-bar {
+        position: relative;
+        top: 4px;
+        height: 3px;
+        background: @primary-color;
+        border-radius: 2px;
+    }
+
+    .ant-tabs-nav .ant-tabs-tab-active {
+        color: @primary-color;
     }
 }

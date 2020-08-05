@@ -24,10 +24,6 @@ function TestForm(props) {
     return (
         <div>
             <Form>
-                <Steps>
-                    <Step title="Finished" description="This is a description." />
-                    <Step title="In Progress" subTitle="Left 00:00:08" description="This is a description." />
-                </Steps>
                 <StandardPopulation {...props.form} a={state} />
                 <Button onClick={submit}>提交</Button>
             </Form>
