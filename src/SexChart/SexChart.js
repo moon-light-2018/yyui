@@ -69,7 +69,7 @@ function SexChart() {
             return a - b;
         })
         const maxNumber = newArr[newArr.length - 1]
-        const size = (boxWidth - 130) / 6
+        const size = (boxWidth - 160) / 6
         const percentage = (number / maxNumber) * size
         const count = percentage < 1 ? Math.ceil(percentage) : Math.round(percentage)
         return count
