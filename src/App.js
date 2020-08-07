@@ -6,6 +6,7 @@ import FeatureDay from './FeatureDay'
 import FeatureDayTwo from './FeatureDayTwo/demo'
 import InterestPreference from './InterestPreference'
 import StandardPopulation from './StandardPopulation'
+import MultipleButton from './MultipleButton/MultipleButton'
 import './styles/main.less'
 import './styles/new.less'
 import { Tabs, Form } from 'antd';
@@ -14,11 +15,15 @@ function App(props) {
 
   return (
     <div className='container-all' >
-      <StandardPopulation />
+      {/* <StandardPopulation />
       <Form>
         <InterestPreference form={props.form} />
-      </Form>
+      </Form> */}
       <Tabs className='demo-show-tab'>
+        <TabPane tab="多选的盒子" key="MultipleButton">
+          <MultipleButton />
+        </TabPane>
+
         <TabPane tab="全选组件逻辑+下拉" key="2">
           <FeatureDay />
         </TabPane>
