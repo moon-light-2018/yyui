@@ -1,0 +1,28 @@
+.star-rate-box {
+    display: flex;
+    height: 16px;
+
+    .color-star {
+        position: absolute;
+        top: 1px;
+        z-index: -1;
+        width: 16px;
+        height: 16px;
+        background-color: #7300FF;
+        background-image: linear-gradient(90deg, #7300FF 0%, #FFFFFF 0%);
+    }
+
+    .checked-star-box {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        top: 0px;
+        margin-left: 2px;
+
+        img {
+            margin-top: -4px;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}

@@ -7,19 +7,34 @@ import FeatureDayTwo from './FeatureDayTwo/demo'
 import InterestPreference from './InterestPreference'
 import StandardPopulation from './StandardPopulation'
 import MultipleButton from './MultipleButton/MultipleButton'
+import SliderStep from './SliderStep'
+import LayoutMarket from './LayoutMarket'
+import StarRate from './StarRate'
 import './styles/main.less'
 import './styles/new.less'
-import { Tabs, Form } from 'antd';
+import { Tabs, Form, Layout } from 'antd';
+import { Collapse } from 'antd';
+
+const { Panel } = Collapse;
 const { TabPane } = Tabs;
 function App(props) {
 
   return (
     <div className='container-all' >
+      {/* <SliderStep /> */}
+      {/* <LayoutMarket > */}
       {/* <StandardPopulation />
       <Form>
         <InterestPreference form={props.form} />
       </Form> */}
+
       <Tabs className='demo-show-tab'>
+        <TabPane tab="星星评分组件" key="6">
+          <StarRate number={1.4} />
+          <StarRate number={4.7} />
+          <StarRate number={8.6} />
+          <StarRate number={10} />
+        </TabPane>
         <TabPane tab="div导出为图片+性别渲染" key="4">
           <SexChart />
         </TabPane>
@@ -37,6 +52,7 @@ function App(props) {
         </TabPane>
 
       </Tabs>
+      {/* </LayoutMarket> */}
     </div>
 
   );

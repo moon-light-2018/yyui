@@ -7,7 +7,7 @@ const listInit = [
 
 ]
 export default function MultipleButton(props) {
-    const { onChange, list = listInit, initValue = ['1'] } = props
+    const { onChange, list = listInit, initValue = ['1'], valueKey } = props
     const [selectedValue, setSelectedValue] = useState(initValue)
     function clickItemFunc(value) {
         let nowValue = selectedValue
@@ -29,9 +29,9 @@ export default function MultipleButton(props) {
     return (
         <div className='multiple-button'>
             {list.map(one => <div
-                className={`button-item${getIsSelectedValue(one.value) ? ' button-item-active' : ''}`}
+                className={`button-item${getIsSelectedValue(one[valueKey]) ? ' button-item-active' : ''}`}
                 key={one.name}
-                onClick={() => clickItemFunc(one.value)}>
+                onClick={() => clickItemFunc(one[valueKey])}>
                 {one.name}
             </div>)}
         </div>
